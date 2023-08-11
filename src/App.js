@@ -4,7 +4,7 @@ import Formulario from './componentes/Formulario';
 import Categoria from './componentes/Categoria';
 
 function App() {
-
+  
   const categorias = [
     {
       nome: 'FPS',
@@ -70,7 +70,7 @@ function App() {
   }
 
   return (
-    <div className="App" style={{backgroundColor: '#F0FFFF'}}>
+    <div className="App">
       <Banner/>
       <Formulario categorias={categorias.map(categoria => categoria.nome)} aoGameCadastrado={games=> aoGameCadastrado(games)}/>
 
