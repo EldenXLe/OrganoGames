@@ -5,7 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #c9c6c6;
+  background-color: #0f0f30; /* Cor de fundo escura */
+  background-image:
+    radial-gradient(ellipse at bottom, #1c1c81 0%, #132a68 100%), /* Gradiente radial escuro */
+    radial-gradient(ellipse at top, #050a53 0%, #181875 100%); /* Gradiente radial claro */
+  background-blend-mode: overlay; /* Modo de mistura para suavizar as transições */
 }
 
 code {
