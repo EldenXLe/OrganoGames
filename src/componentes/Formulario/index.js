@@ -1,37 +1,64 @@
+import { useState } from 'react'
 import Botao from '../Botao'
 import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './Formulario.css'
 
-const Formulario = () => {
+const Formulario = (props) => {
 
-    const categorias = [
-        'FPS',
-        'RPG',
-        'LUTA',
-        'INDIE',
-        'TERROR',
-        'AÇÃO',
-        'AVENTURA',
-        'ESPORTE',
-        'CORRIDA',
-        'ESTRATEGIA',
-        'SOBREVIVENCIA'
-    ]
+    const [nome, setNome] = useState('')
+    const [plataforma, setPlataforma] = useState('')
+    const [imagem, setImagem] = useState('')
+    const [categoria, setCategoria] = useState('')
+    
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        console.log('Form submetido')
+        props.aoGameCadastrado({
+            nome,
+            plataforma,
+            imagem,
+            categoria
+        })
+        setNome('')
+        setPlataforma('')
+        setImagem('')
+        setCategoria('')
     }
 
     return(
         <section className='formulario'>
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados abaixo para criar o card do game:</h2>
-                <CampoTexto obrigatorio= {true} label="Nome" placeholder="Digite o nome do game..."/>
-                <CampoTexto obrigatorio= {true} label="Genero" placeholder="Digite uma brever descrição do game..."/>
-                <CampoTexto label="Imagem" placeholder="Anexe um link contendo a imagem do game..."/>
-                <ListaSuspensa obrigatorio= {true} label="Categorias"itens ={categorias}/>
+                <CampoTexto
+                 obrigatorio= {true} 
+                 label="Nome" 
+                 placeholder="Digite o nome do game..."
+                 valor={nome}
+                 aoAlterado={valor => setNome(valor)}
+                 />
+                <CampoTexto 
+                 obrigatorio= {true} 
+                 label="Plataforma" 
+                 placeholder="Digite a plataforma do game..."
+                 valor={plataforma}
+                 aoAlterado={valor => setPlataforma(valor)}
+                 
+                 />
+                <CampoTexto
+                 label="Imagem" 
+                 placeholder="Anexe um link contendo a imagem do game..."
+                 valor={imagem}
+                 aoAlterado={valor => setImagem(valor)}
+                 
+                 />
+                <ListaSuspensa
+                 obrigatorio= {true} 
+                 label="Categorias"
+                 itens ={props.categorias}
+                 valor={categoria}
+                 aoAlterado={valor => setCategoria(valor)}
+                 />
                 <Botao>
                     Criar Card
                 </Botao>
